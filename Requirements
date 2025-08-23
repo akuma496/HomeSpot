@@ -1,0 +1,245 @@
+HomeHub: Functional and Non-Functional Requirements
+This is subject to change before development
+
+1. Functional Requirements (FRs)
+These describe what the system must do.
+
+FR 1.0 - User & Group Management
+FR 1.1 - User Registration & Authentication: The system SHALL allow new users to register an account and existing users to log in securely.
+
+FR 1.1.1 - Authentication Methods: Supported authentication methods SHALL include email/password, Google Sign-In, and Apple Sign-In.
+
+FR 1.1.2 - No MFA: The system SHALL NOT require multi-factor authentication (MFA).
+
+FR 1.2 - Household/Group Creation: The system SHALL allow a user to create a new household or group.
+
+FR 1.2.1 - Equal Permissions: Within a household/group, all members SHALL have the same permissions for creating/deleting tasks and adding/editing expenses.
+
+FR 1.3 - User Invitation: The system SHALL allow a user to invite other users to a household/group.
+
+FR 1.3.1 - Invitation Methods: Invitation methods SHALL include invite code, email invitation, and direct app invite.
+
+FR 1.3.2 - New User Handling: If an invited user does not have a HomeHub account, the system SHALL send an email with a link to join and create an account.
+
+FR 1.4 - User Acceptance/Rejection: The system SHALL allow invited users to accept or reject invitations to a household/group.
+
+FR 1.5 - Friends List Management: The system SHALL allow users to add, remove, and manage a list of friends.
+
+FR 1.5.1 - Friends List Purpose: The primary purpose of the Friends List is to enable users to directly add tasks or share bills with individuals without needing to create a full group.
+
+FR 1.6 - Multiple Group Membership: The system SHALL allow a user to be a member of multiple households/groups simultaneously.
+
+FR 2.0 - Task Management
+FR 2.1 - Task Creation: The system SHALL allow users to create new tasks within a household/group or as personal tasks.
+
+FR 2.1.1 - Task Details: Tasks SHALL include fields such as title, description, assignee(s), due date/time, and recurrence settings using standard patterns. An optional estimated cost can be included, but currency setting is deferred from MVP. No additional optional fields like priority, categories, or location are required.
+
+FR 2.1.2 - Personal Task Definition: Personal tasks are tasks a user sets for themselves (e.g., "clean the floor on a schedule").
+
+FR 2.1.3 - Personal Task Sharing: The system SHALL allow users to share their personal tasks with other users. Shared personal tasks SHALL remain personal for the owner and be viewable and commentable by others, but NOT assignable to them.
+
+FR 2.2 - Task Assignment: The system SHALL allow tasks to be assigned to one or more users within a household/group.
+
+FR 2.3 - Task Scheduling: The system SHALL allow tasks to be scheduled for a specific date and time, including recurring tasks (e.g., daily, weekly, monthly) using standard recurrence patterns.
+
+FR 2.4 - Task Deletion: The system SHALL allow users with appropriate permissions to delete tasks.
+
+FR 2.5 - Task Completion: The system SHALL allow users to mark tasks as complete.
+
+FR 2.6 - Task Viewing: The system SHALL allow users to view tasks assigned to them, tasks within their groups, and personal tasks.
+
+FR 2.7 - Task Reminders: The system SHALL send reminders for upcoming tasks.
+
+FR 2.7.1 - Customizable Reminders: Users SHALL be able to customize reminder timings (e.g., 1 hour before, 1 day before).
+
+FR 2.7.2 - Reminder Types: Reminders SHALL be delivered via in-app notifications and push notifications.
+
+FR 2.8 - Personal Task Reminders: The system SHALL allow users to set personal reminders for their own tasks.
+
+FR 2.9 - Calendar Integration: The system SHALL allow users to export tasks as one-way ICS files to Apple Calendar and Google Calendar for the MVP.
+
+FR 2.9.1 - Dynamic Updates (Export): Pushed tasks SHALL dynamically update in the external calendar if task details change in HomeHub.
+
+FR 2.9.2 - Two-Way Sync (Deferred): Two-way synchronization of events between HomeHub and external calendars is deferred from MVP.
+
+FR 2.9.3 - Overlapping Incidence Checks (Deferred): Automatic detection of overlapping incidences, conflict resolution, and AI recommendations are deferred from MVP.
+
+FR 2.10 - Task Conversation: The system SHALL allow users to have a conversation thread directly within each task.
+
+FR 2.10.1 - Messaging: Users SHALL be able to send plain text messages within a task conversation, with real-time updates when connected to the internet. Users SHALL be able to edit or delete their messages. Message timestamps ARE required.
+
+FR 2.10.2 - Read Receipts (Simplified for MVP): The system SHALL display a "delivered" notification for messages within task conversations for the MVP. Full read receipts are deferred from MVP.
+
+FR 2.10.3 - No Media Support (Initial): The system SHALL not support media (images, files) in task conversations in the MVP, but the architecture SHALL allow for future expansion.
+
+FR 2.11 - Task Currency Setting (Deferred from MVP): The system SHOULD allow users to set the currency for an estimated task cost (e.g., INR, USD). This feature is deferred from the MVP.
+
+FR 3.0 - Currency and Expense Management (Splitwise-like)
+FR 3.1 - Expense Creation: The system SHALL allow users to log expenses, specifying who paid and who owes, within a household/group.
+
+FR 3.1.1 - Expense Details: Expenses SHALL include fields such as amount, description, date, participants, and an optional field for receipts (text only, e.g., a receipt number or brief description).
+
+FR 3.2 - Expense Splitting (Simplified for MVP): The system SHALL allow expenses to be split equally among participants for the MVP. Splitting by percentage or direct share (unequally) is deferred from MVP.
+
+FR 3.3 - Balance Calculation: The system SHALL automatically calculate and display the current balance (who owes whom) within a household/group.
+
+FR 3.4 - Payment Tracking (Simplified for MVP): The system SHALL primarily facilitate tracking of who owes whom and recording when payments are made externally, without direct payment processing.
+
+FR 3.4.1 - External Payment Sign-off (Simplified for MVP): For the MVP, the payer selects "I paid" to mark a payment as complete. A payee acceptance/sign-off flow is deferred from MVP.
+
+FR 3.5 - Payment Reminders: The system SHALL send reminders for outstanding payments.
+
+FR 3.6 - Payment Task Scheduling: The system SHALL allow users to schedule recurring payments or payment requests.
+
+FR 3.7 - Currency Checks (Simplified for MVP): The system SHALL support logging expenses in a single default currency per group for the MVP. Multi-currency support and currency conversion for balance calculations are deferred from MVP.
+
+FR 3.7.1 - Default Currency: The default currency for a group SHALL be set at the creation of the group.
+
+FR 4.0 - General Group Messaging
+FR 4.1 - Basic Group Chat: The system SHALL provide basic group chat functionality within a household/group for general text-based communication (e.g., "this needs to be done," "we need to start this").
+
+FR 4.1.1 - No Media Support (Initial): The system SHALL not support media (images, files) in general group chat in the MVP, but the architecture SHALL allow for future expansion.
+
+FR 4.1.2 - Read Receipts (Simplified for MVP): The system SHALL display a "delivered" notification for messages in general group chats for the MVP. Full read receipts are deferred from MVP.
+
+FR 4.1.3 - Message Management: Users SHALL be able to edit or delete their messages in the general group chat. Message timestamps ARE required.
+
+FR 4.1.4 - Notifications: In-app and push notifications are expected for new messages.
+
+FR 5.0 - Shopping List Management
+FR 5.1 - Shopping List Creation: The system SHALL allow users to create and manage shopping lists within a household/group.
+
+FR 5.2 - Item Management: The system SHALL allow users to add, edit, and remove items from a shopping list.
+
+FR 5.3 - Repeat Items: The system SHALL allow users to mark specific shopping list items as "repeat items."
+
+FR 5.3.1 - Visual Indicator: Repeat items SHALL be visually distinguished with a tick mark on the right side of the item.
+
+FR 5.3.2 - Adding to Repeat List: Users SHALL be able to add an item to the repeat list via a right-click (desktop) or long-press (mobile) gesture on the item.
+
+2. Non-Functional Requirements (NFRs)
+These describe how the system performs its functions.
+
+NFR 1.0 - Performance
+NFR 1.1 - Response Time: The system SHALL respond to user actions (e.g., loading tasks, adding expenses) within 2 seconds under normal load.
+
+NFR 1.2 - Concurrent Users: The system SHALL support at least 500 concurrent active users for the MVP, with the ability to scale to tens of thousands of concurrent users.
+
+NFR 1.3 - Data Load Time: Task lists and expense summaries SHALL load within 3 seconds for groups with up to 100 tasks/expenses.
+
+NFR 1.4 - Cost Efficiency: The system architecture SHALL be designed to be cheap and maintainable in the long run, minimizing operational costs even at scale.
+
+NFR 1.5 - AI/ML Integration (Deferred): The system's incorporation of AI, specifically for OCR (Optical Character Recognition) to process receipts and feed to AI for payment/split breakdown assistance, is deferred from the MVP.
+
+NFR 2.0 - Scalability
+NFR 2.1 - User Base Growth: The architecture SHALL be designed to scale efficiently to accommodate a rapidly growing user base (e.g., from 500 to 100,000+ users).
+
+NFR 2.2 - Data Volume Growth: The database SHALL be able to handle a continuously increasing volume of tasks, messages, and expense data without significant performance degradation.
+
+NFR 2.3 - Feature Expansion: The system architecture SHALL be modular and extensible to allow for the easy addition of new features without requiring a complete rewrite.
+
+NFR 3.0 - Security
+NFR 3.1 - Data Encryption: All sensitive user data and communications (e.g., login credentials, financial data) SHALL be encrypted both in transit and at rest.
+
+FR 3.2 - Access Control: The system SHALL enforce robust access control, ensuring users can only access data relevant to their households/groups and personal tasks/expenses.
+
+NFR 3.3 - Authentication: The system SHALL use industry-standard authentication mechanisms (e.g., OAuth 2.0, Firebase Authentication).
+
+NFR 3.4 - Compliance: No specific compliance requirements (e.g., GDPR, CCPA) are anticipated for the MVP, but the architecture should allow for future compliance as needed.
+
+NFR 3.5 - Account Recovery: Basic security practices SHALL be implemented for account recovery (e.g., forgotten password).
+
+NFR 4.0 - Reliability & Availability
+NFR 4.1 - Uptime: The system SHALL maintain an uptime of 99.9% (excluding scheduled maintenance).
+
+NFR 4.2 - Data Backup: All data SHALL be regularly backed up to prevent loss.
+
+NFR 4.3 - Error Handling: The system SHALL gracefully handle errors and provide meaningful feedback to users.
+
+NFR 5.0 - Usability
+NFR 5.1 - Intuitive UI: The user interface SHALL be intuitive and easy to navigate for users of all technical skill levels.
+
+NFR 5.2 - Cross-Platform Compatibility: The app SHALL be accessible and functional across various devices and operating systems.
+
+Explanation: Cross-platform compatibility means that your app works correctly on different types of devices and operating systems without needing separate development efforts for each. For example, a single codebase could potentially run on:
+
+Mobile: iOS (Apple iPhones/iPads) and Android phones/tablets.
+
+Web: Accessible through any standard web browser on desktops, laptops, or mobile devices.
+
+The priority indicates where you want the primary development focus or initial release to be (e.g., "mobile first," or "web first").
+
+NFR 5.3 - Real-time Updates: Changes made by one user (e.g., task completion, message sent, task detail modification) SHALL be reflected in real-time for other relevant users.
+
+NFR 6.0 - Maintainability
+NFR 6.1 - Code Quality: The codebase SHALL adhere to high coding standards, be well-documented, and be easy to understand and modify.
+
+NFR 6.2 - Monitoring: The system SHALL have comprehensive monitoring and logging capabilities to quickly identify and diagnose issues.
+
+Explanation: Logging and monitoring are essential for understanding how your application is performing and for quickly troubleshooting problems. Critical metrics typically include:
+
+Error Rates: How often errors occur (e.g., server errors, database connection failures, unexpected user input errors). High error rates indicate instability.
+
+API Response Times (Latency): How long it takes for your application's server to respond to requests. Slow response times impact user experience (NFR 1.1).
+
+User Activity Metrics: Number of active users, common feature usage, successful logins, etc. This helps understand engagement and identify performance bottlenecks related to high traffic.
+
+Resource Utilization: CPU, memory, and disk usage of your servers and database. This helps ensure your infrastructure can handle the load and scale effectively.
+
+Database Query Performance: How long database queries take, identifying slow queries that might need optimization.
+
+System Uptime/Availability: Confirming that the application is running and accessible (NFR 4.1).
+
+NFR 6.2.1 - Monitoring Tools: The system SHALL integrate Firebase Crashlytics for crash reporting and Google Cloud Logging for general application logging and monitoring.
+
+3. Database Persistence Considerations
+The choice for the database for HomeHub's MVP and initial scale is Firestore.
+
+Given HomeHub's strong emphasis on real-time updates for tasks and messaging, scalability for a growing user base, and the benefits of a managed service to reduce operational burden, Firestore is the recommended candidate. Its flexible schema also aligns well with potential future feature expansions. While PostgreSQL offers robust data integrity for financial aspects, the real-time and scaling advantages of Firestore for the core collaborative features outweigh the complexity of managing real-time capabilities with PostgreSQL for this application.
+
+Firestore Data Management: For messages and expenses, the implementation SHALL ensure pagination to efficiently load and display large volumes of data without impacting performance.
+
+4. MVP Prioritization
+Based on your updated guidance, here's the refined MVP scope for HomeHub:
+
+MVP Keep (Essential Features):
+
+User Management: Households, inviting users, friends list management (FR 1.0).
+
+Task Management Core: Task creation, assignment, scheduling (basic recurrence is included), and task reminders (in-app and push notifications) (FR 2.1, FR 2.2, FR 2.3, FR 2.7, FR 2.8).
+
+Task Conversation: Text-only chat within tasks (FR 2.10.1, FR 2.10.3).
+
+Expense Management Core: Logging expenses with equal splitting, and automatic balance calculation (FR 3.1, FR 3.2 (simplified), FR 3.3).
+
+General Group Messaging: Basic, text-only chat for households (FR 4.1.1).
+
+Push Notifications: For tasks and messages (FR 2.7.2, FR 4.1.4).
+
+Shopping List Management: Including creation, item management, and repeat items with visual indicators and specific adding gestures (FR 5.0).
+
+MVP Simplify (Reduced Scope for Initial Release):
+
+Calendar Integration: MVP will be one-way export (ICS) only. Two-way sync and conflict resolution are deferred (FR 2.9).
+
+Expense Splitting: MVP will support equal splits only. Unequal splitting options (percentage, direct share) are deferred (FR 3.2).
+
+Payment Tracking: MVP will have the payer mark a payment as paid, without a separate payee sign-off flow (FR 3.4.1).
+
+Currency Checks (Expenses): MVP will enforce one currency per household. Multi-currency support and conversions are deferred (FR 3.7).
+
+Read Receipts: MVP will show a "delivered" notification for messages in both task and general chats. Full read receipts are deferred (FR 2.10.2, FR 4.1.2).
+
+Deferred (v2+ Features):
+
+AI/OCR for Receipts: Intelligent processing of receipts (NFR 1.5).
+
+Two-Way Calendar Sync + Conflict Resolution: Full two-way integration with external calendars (FR 2.9.2, FR 2.9.3).
+
+Multi-Currency & Conversions: Advanced currency handling for expenses (FR 3.7).
+
+Unequal Splits: More granular expense splitting (FR 3.2).
+
+Full Read Receipts: Advanced read receipt functionality everywhere (FR 2.10.2, FR 4.1.2).
+
+Task Currency Setting: Setting currency for estimated task costs (FR 2.11).
